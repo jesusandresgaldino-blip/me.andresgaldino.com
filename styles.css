@@ -9,33 +9,28 @@
 
 :root {
     --max-w: 480px;
-    --px: 28px;        /* horizontal padding */
-    --gap: 12px;       /* card gap */
-    --black: #000;
-    --dark: #0d0d0d;
-    --text: rgba(255,255,255,0.95);
-    --text-sub: rgba(255,255,255,0.55);
-    --border: rgba(255,255,255,0.10);
-    --glass: rgba(255,255,255,0.06);
+    --px: 24px;
+    --gap: 10px;
+    --radius: 22px;
+    --bg: #060606;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-    background-color: var(--black);
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse 90% 55% at 50% -5%, rgba(110,70,220,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 35% at 85% 95%, rgba(200,50,90,0.10) 0%, transparent 55%);
     font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    color: var(--text);
+    color: rgba(255,255,255,0.95);
     min-height: 100svh;
-    /* Center page horizontally on desktop */
     display: flex;
     justify-content: center;
 }
 
 /* ========================
    PAGE WRAPPER
-   Centers & constrains everything
    ======================== */
 .page-wrapper {
     width: 100%;
@@ -46,14 +41,13 @@ body {
 }
 
 /* ========================
-   HERO SECTION
-   Photo stops at @handle
+   HERO
    ======================== */
 .hero {
     position: relative;
     width: 100%;
-    height: 62svh;
-    max-height: 540px;
+    height: 64svh;
+    max-height: 560px;
     min-height: 380px;
     overflow: hidden;
     flex-shrink: 0;
@@ -65,58 +59,56 @@ body {
     background-image: url('assets/profile.png');
     background-size: cover;
     background-position: center top;
-    animation: photoBreathe 18s ease-in-out infinite alternate;
+    animation: photoBreathe 20s ease-in-out infinite alternate;
 }
 
 @keyframes photoBreathe {
     from { transform: scale(1); }
-    to   { transform: scale(1.06); }
+    to   { transform: scale(1.07); }
 }
 
-/* Gradient fades photo into dark at bottom */
 .hero__gradient {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to bottom,
-        transparent 0%,
-        transparent 58%,
-        rgba(0,0,0,0.30) 72%,
-        rgba(0,0,0,0.80) 88%,
-        rgba(0,0,0,1.00) 100%
+        rgba(0,0,0,0.08) 0%,
+        transparent 40%,
+        rgba(0,0,0,0.20) 62%,
+        rgba(0,0,0,0.72) 82%,
+        rgba(6,6,6,1.00) 100%
     );
 }
 
-/* Name + handle sit at the bottom of the hero */
 .hero__content {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 var(--px) 16px;
+    padding: 0 var(--px) 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     text-align: center;
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 .profile-name {
-    font-size: clamp(22px, 6vw, 30px);
-    font-weight: 700;
+    font-size: clamp(24px, 6.5vw, 32px);
+    font-weight: 800;
     color: #fff;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
     line-height: 1.1;
     display: flex;
     align-items: center;
-    gap: 6px;
-    text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+    gap: 7px;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.7);
 }
 
 .verified-badge {
@@ -125,289 +117,22 @@ body {
     flex-shrink: 0;
 }
 
-.verified-badge svg {
-    width: 22px;
-    height: 22px;
-}
+.verified-badge svg { width: 22px; height: 22px; }
 
 .profile-handle {
     font-size: 13px;
     font-weight: 400;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.60);
     letter-spacing: 0.01em;
 }
 
-/* ========================
-   CONTENT SECTION
-   Dark bg, all centered
-   ======================== */
-.content {
-    background-color: var(--black);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 60px;
-    animation: fadeIn 0.6s ease 0.3s both;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* ========================
-   SOCIAL PILLS ROW
-   ======================== */
-.socials-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding: 0 var(--px);
-    width: 100%;
-}
-
-.social-pill {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    flex-shrink: 0;
-    cursor: pointer;
-    /* No background, no border — bare icon */
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 4px;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                opacity 0.15s ease;
-}
-
-/* Hide old colored bg span */
-.social-pill__bg { display: none; }
-
-.social-pill svg {
-    width: 27px;
-    height: 27px;
-    flex-shrink: 0;
-    opacity: 1;
-    filter: none;
-}
-
-.social-pill:hover {
-    transform: translateY(-3px) scale(1.12);
-    opacity: 1;
-}
-
-.social-pill:active {
-    transform: scale(0.9);
-}
-
-/* ========================
-   FOLLOWERS STATIC
-   ======================== */
-.followers-static {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 0;
-    list-style: none;
-}
-
-.followers-count {
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-}
-
-/* ========================
-   LOCATION
-   ======================== */
-.location {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 20px;
-    margin-bottom: 2px;
-}
-
-/* ========================
-   CARDS SECTION
-   ======================== */
-.cards-section {
-    width: 100%;
-    padding: 24px var(--px) 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-}
-
-/* Two-column row */
-.link-card-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--gap);
-}
-
-/* ========================
-   BASE CARD
-   ======================== */
-.link-card {
-    display: flex;
-    flex-direction: column;
-    border-radius: 18px;
-    overflow: hidden;
-    text-decoration: none;
-    background: var(--glass);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition:
-        transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
-        box-shadow 0.22s ease,
-        background 0.18s ease;
-    animation: cardUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes cardUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-.link-card:hover {
-    transform: translateY(-3px) scale(1.015);
-    background: rgba(255,255,255,0.09);
-    box-shadow: 0 14px 40px rgba(0,0,0,0.55);
-}
-
-.link-card:active {
-    transform: scale(0.97);
-}
-
-/* ========================
-   CARD THUMBNAIL
-   ======================== */
-.link-card__thumb {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.link-card__thumb--square {
-    aspect-ratio: 1 / 1;
-}
-
-.link-card__thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.link-card:hover .link-card__thumb img {
-    transform: scale(1.06);
-}
-
-.link-card__thumb-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.5) 100%);
-    pointer-events: none;
-}
-
-/* ========================
-   CARD BODY
-   ======================== */
-.link-card__body {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 14px;
-}
-
-.link-card__platform-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-    color: white;
-}
-
-.link-card__platform-badge svg {
-    width: 15px;
-    height: 15px;
-}
-
-.link-card__platform-badge--yt { background: #FF0000; }
-.link-card__platform-badge--tt { background: #010101; box-shadow: 0 0 0 1px rgba(255,255,255,0.14); }
-.link-card__platform-badge--li { background: #0A66C2; }
-
-.link-card__text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    flex: 1;
-    min-width: 0;
-}
-
-.link-card__title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2;
-}
-
-.link-card__subtitle {
+.profile-role {
     font-size: 11px;
-    font-weight: 400;
-    color: var(--text-sub);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.link-card__arrow {
-    width: 15px;
-    height: 15px;
-    color: rgba(255,255,255,0.35);
-    flex-shrink: 0;
-    transition: transform 0.18s ease, color 0.18s ease;
-}
-
-.link-card:hover .link-card__arrow {
-    transform: translate(2px, -2px);
-    color: rgba(255,255,255,0.75);
-}
-
-.link-card--half .link-card__arrow { display: none; }
-
-/* ========================
-   RESPONSIVE — DESKTOP
-   Hero gets taller, max cap
-   ======================== */
-@media (min-width: 480px) {
-    .hero {
-        height: 440px;
-        max-height: 540px;
-    }
+    font-weight: 500;
+    color: rgba(255,255,255,0.38);
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    margin-top: 1px;
 }
 
 /* ========================
@@ -415,14 +140,12 @@ body {
    ======================== */
 .sticky-header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(0, 0, 0, 0.80);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(6,6,6,0.80);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
@@ -445,13 +168,12 @@ body {
 }
 
 .sticky-header__avatar {
-    width: 38px;
-    height: 38px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
     flex-shrink: 0;
-    border: 1.5px solid rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.14);
 }
 
 .sticky-header__name {
@@ -464,9 +186,212 @@ body {
     margin: 0;
 }
 
-.sticky-header__name .verified-badge svg {
-    width: 16px;
-    height: 16px;
+.sticky-header__name .verified-badge svg { width: 15px; height: 15px; }
+
+/* ========================
+   CONTENT
+   ======================== */
+.content {
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 36px;
+    padding-bottom: 72px;
+    animation: fadeIn 0.5s ease 0.2s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ========================
+   SOCIAL PILLS
+   ======================== */
+.socials-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    padding: 0 var(--px);
+    width: 100%;
+}
+
+.social-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    transition:
+        transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.18s ease;
+}
+
+.social-pill svg { width: 26px; height: 26px; flex-shrink: 0; }
+
+.social-pill:hover {
+    transform: translateY(-4px) scale(1.14);
+    background: rgba(255,255,255,0.06);
+}
+
+.social-pill:active { transform: scale(0.88); }
+
+/* Staggered pop on load */
+.socials-row .social-pill:nth-child(1) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.20s both; }
+.socials-row .social-pill:nth-child(2) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.27s both; }
+.socials-row .social-pill:nth-child(3) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.34s both; }
+.socials-row .social-pill:nth-child(4) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.41s both; }
+.socials-row .social-pill:nth-child(5) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.48s both; }
+.socials-row .social-pill:nth-child(6) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.55s both; }
+
+@keyframes pillPop {
+    0%   { opacity: 0; transform: scale(0.3) rotate(-12deg); }
+    60%  { transform: scale(1.2) rotate(4deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ========================
+   FOLLOWERS
+   ======================== */
+.followers-static {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.50);
+    margin-bottom: 0;
+    list-style: none;
+    letter-spacing: 0.01em;
+}
+
+.followers-count {
+    font-weight: 700;
+    font-size: 13px;
+    color: rgba(255,255,255,0.90);
+    display: inline-block;
+}
+
+/* ========================
+   NETWORK GRID
+   ======================== */
+.net-grid {
+    width: 100%;
+    padding: 22px var(--px) 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+
+/* ── Base card ── */
+.net-card {
+    display: flex;
+    text-decoration: none;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(145deg, rgba(255,255,255,0.075) 0%, rgba(255,255,255,0.025) 100%);
+    border: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.07);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    will-change: transform;
+    transition:
+        transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease,
+        border-color 0.20s ease,
+        background 0.20s ease;
+}
+
+.net-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: linear-gradient(145deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 100%);
+    border-color: rgba(255,255,255,0.16);
+    box-shadow: 0 22px 55px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+.net-card:active { transform: scale(0.96); transition-duration: 0.1s; }
+
+/* ── Full-width card ── */
+.net-card--full {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 22px;
+    gap: 16px;
+    min-height: 86px;
+}
+
+/* ── Half-width card ── */
+.net-card--half {
+    grid-column: span 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px 18px 18px;
+    min-height: 158px;
+}
+
+/* Icons */
+.net-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.net-card__icon svg { width: 28px; height: 28px; }
+.net-card--full .net-card__icon svg { width: 30px; height: 30px; }
+.net-card--half .net-card__icon svg { width: 32px; height: 32px; }
+
+/* Text */
+.net-card__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.net-card__name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.net-card--half .net-card__name {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.net-card__handle {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+}
+
+.net-card__arrow {
+    width: 18px; height: 18px;
+    color: rgba(255,255,255,0.45);
+    flex-shrink: 0;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.net-card:hover .net-card__arrow {
+    transform: translate(2px, -2px);
+    color: rgba(255,255,255,0.80);
 }
 
 /* ========================
@@ -474,11 +399,26 @@ body {
    ======================== */
 .net-card--instagram {
     grid-column: span 2;
-    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
     flex-direction: column;
     padding: 0;
     overflow: hidden;
     cursor: pointer;
+    /* IG gradient as glass tint, not solid */
+    background: linear-gradient(135deg,
+        rgba(64,93,230,0.60) 0%,
+        rgba(131,58,180,0.65) 25%,
+        rgba(225,48,108,0.70) 55%,
+        rgba(253,29,29,0.65) 78%,
+        rgba(252,176,69,0.55) 100%);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 4px 30px rgba(225,48,108,0.20), inset 0 1px 0 rgba(255,255,255,0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.net-card--instagram:hover {
+    box-shadow: 0 22px 60px rgba(225,48,108,0.38), inset 0 1px 0 rgba(255,255,255,0.20);
+    border-color: rgba(255,255,255,0.22);
 }
 
 .ig-toggle__header-row {
@@ -487,31 +427,26 @@ body {
     align-items: center;
     padding: 20px 22px;
     gap: 16px;
-    min-height: 82px;
+    min-height: 86px;
     width: 100%;
 }
 
 .ig-toggle__chevron {
-    width: 20px;
-    height: 20px;
-    color: rgba(255,255,255,0.75);
+    width: 20px; height: 20px;
+    color: rgba(255,255,255,0.80);
     flex-shrink: 0;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.net-card--instagram.ig-open .ig-toggle__chevron {
-    transform: rotate(180deg);
-}
+.net-card--instagram.ig-open .ig-toggle__chevron { transform: rotate(180deg); }
 
 .ig-toggle__photos {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: max-height 0.50s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.net-card--instagram.ig-open .ig-toggle__photos {
-    max-height: 600px;
-}
+.net-card--instagram.ig-open .ig-toggle__photos { max-height: 620px; }
 
 .ig-card__grid {
     display: grid;
@@ -527,15 +462,14 @@ body {
 }
 
 .ig-card__post img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     object-position: center top;
     display: block;
-    transition: transform 0.4s ease;
+    transition: transform 0.45s ease;
 }
 
-.ig-card__post:hover img { transform: scale(1.06); }
+.ig-card__post:hover img { transform: scale(1.08); }
 
 .ig-card__post::after {
     content: '';
@@ -545,391 +479,149 @@ body {
     transition: background 0.25s ease;
 }
 
-.ig-card__post:hover::after { background: rgba(0,0,0,0.18); }
+.ig-card__post:hover::after { background: rgba(0,0,0,0.15); }
 
 /* ========================
-   NETWORK CARDS GRID
+   BRAND CARDS — glass tints
    ======================== */
-.net-grid {
-    width: 100%;
-    padding: 24px var(--px) 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-}
 
-.net-card {
-    display: flex;
-    text-decoration: none;
-    border-radius: 18px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-                filter 0.18s ease;
-}
-
-.net-card:hover  { filter: brightness(1.12); transform: translateY(-2px) scale(1.01); }
-.net-card:active { transform: scale(0.97); }
-
-/* Full width */
-.net-card--full {
-    grid-column: span 2;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px 22px;
-    gap: 16px;
-    min-height: 82px;
-}
-
-/* Half width */
-.net-card--half {
-    grid-column: span 1;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 18px 18px 16px;
-    min-height: 148px;
-}
-
-.net-card__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.net-card__icon svg {
-    width: 28px;
-    height: 28px;
-}
-
-.net-card--full .net-card__icon svg {
-    width: 30px;
-    height: 30px;
-}
-
-.net-card__info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.net-card__name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-}
-
-.net-card__handle {
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.65);
-}
-
-.net-card__arrow {
-    width: 18px;
-    height: 18px;
-    color: rgba(255,255,255,0.55);
-    flex-shrink: 0;
-}
-
-/* Brand colors */
-.net-card--instagram {
-    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
-}
-
-.net-card--x {
-    background: #0d0d0d;
-    border: 1px solid rgba(255,255,255,0.11);
-}
-
+/* TikTok — dark with neon tint */
 .net-card--tiktok {
-    background: #010101;
-    border: 1px solid rgba(255,255,255,0.09);
+    background: linear-gradient(145deg, rgba(254,44,85,0.15) 0%, rgba(37,244,238,0.08) 100%);
+    border-color: rgba(254,44,85,0.18);
 }
-.net-card--tiktok::after {
+.net-card--tiktok::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 85% 15%, rgba(254,44,85,0.22) 0%, transparent 55%),
-                radial-gradient(circle at 15% 85%, rgba(37,244,238,0.13) 0%, transparent 55%);
+    background:
+        radial-gradient(circle at 85% 20%, rgba(254,44,85,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 15% 80%, rgba(37,244,238,0.12) 0%, transparent 50%);
     pointer-events: none;
 }
+.net-card--tiktok:hover { box-shadow: 0 22px 55px rgba(254,44,85,0.25), 0 22px 55px rgba(37,244,238,0.12), inset 0 1px 0 rgba(255,255,255,0.10); }
 
+/* Facebook — blue tint */
 .net-card--facebook {
-    background: #1877F2;
+    background: linear-gradient(145deg, rgba(24,119,242,0.35) 0%, rgba(24,119,242,0.12) 100%);
+    border-color: rgba(24,119,242,0.28);
 }
+.net-card--facebook:hover { box-shadow: 0 22px 55px rgba(24,119,242,0.35), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-.net-card--discord {
-    background: #5865F2;
-}
-
-.net-card--linkedin {
-    background: #0A66C2;
-}
-
-.net-card--threads {
-    background: #111;
-    border: 1px solid rgba(255,255,255,0.09);
-}
-
+/* YouTube — red tint */
 .net-card--youtube {
-    background: #FF0000;
+    background: linear-gradient(145deg, rgba(255,0,0,0.28) 0%, rgba(255,0,0,0.08) 100%);
+    border-color: rgba(255,0,0,0.22);
+}
+.net-card--youtube:hover { box-shadow: 0 22px 55px rgba(255,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.10); }
+
+/* Discord — purple tint */
+.net-card--discord {
+    background: linear-gradient(145deg, rgba(88,101,242,0.38) 0%, rgba(88,101,242,0.12) 100%);
+    border-color: rgba(88,101,242,0.30);
+}
+.net-card--discord:hover { box-shadow: 0 22px 55px rgba(88,101,242,0.38), inset 0 1px 0 rgba(255,255,255,0.10); }
+
+/* Threads — near-black glass */
+.net-card--threads {
+    background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+    border-color: rgba(255,255,255,0.10);
 }
 
+/* X — dark glass, lighter border */
+.net-card--x {
+    background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+    border-color: rgba(255,255,255,0.12);
+}
+
+/* LinkedIn — blue tint */
+.net-card--linkedin {
+    background: linear-gradient(145deg, rgba(10,102,194,0.38) 0%, rgba(10,102,194,0.12) 100%);
+    border-color: rgba(10,102,194,0.30);
+}
+.net-card--linkedin:hover { box-shadow: 0 22px 55px rgba(10,102,194,0.35), inset 0 1px 0 rgba(255,255,255,0.10); }
+
+/* Portfolio — frosted white glass */
 .net-card--portfolio {
     grid-column: span 2;
     flex-direction: row;
     align-items: center;
-    padding: 28px 24px;
+    padding: 26px 24px;
     gap: 18px;
-    min-height: 100px;
-    background: linear-gradient(135deg,
-        rgba(255,255,255,0.13) 0%,
-        rgba(180,180,180,0.07) 50%,
-        rgba(255,255,255,0.10) 100%);
-    border: 1px solid rgba(255,255,255,0.20);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18),
-                0 8px 32px rgba(0,0,0,0.25);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    min-height: 96px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 40px rgba(0,0,0,0.30);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.net-card--portfolio:hover {
+    box-shadow: 0 22px 55px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.26);
 }
 
-.net-card__name--lg {
-    font-size: 17px;
-}
+.net-card__name--lg { font-size: 17px; font-weight: 800; }
 
 /* ========================
-   RESPONSIVE — SMALL MOBILE
+   CARD SCROLL-REVEAL
+   JS adds .card-revealed
    ======================== */
-@media (max-width: 360px) {
-    .social-pill { width: 44px; height: 44px; }
-    .social-pill svg { width: 18px; height: 18px; }
-    .socials-row { gap: 9px; }
-    .profile-name { font-size: 25px; }
-
-    .link-card__body { padding: 10px 12px; gap: 8px; }
-    .link-card__platform-badge { width: 28px; height: 28px; }
-    .link-card__platform-badge svg { width: 13px; height: 13px; }
-    .link-card__title { font-size: 12px; }
+.net-card.card-revealed {
+    animation: revealUp 0.60s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ========================
-   PROFILE ROLE TAG
-   ======================== */
-.profile-role {
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-top: 3px;
-}
-
-/* Desktop sidebar extra — hidden on mobile */
-.hero__meta { display: none; }
-
-/* ========================
-   ANIMATIONS — SMART
-   ======================== */
 @keyframes revealUp {
-    from { opacity: 0; transform: translateY(28px) scale(0.97); }
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes pillPop {
-    0%   { opacity: 0; transform: scale(0.4) rotate(-8deg); }
-    65%  { transform: scale(1.18) rotate(3deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
-
-@keyframes circleFloat {
-    0%   { transform: translateY(0px); }
-    100% { transform: translateY(-10px); }
-}
-
-@keyframes shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
-}
-
-/* Staggered pill bounce-in on load */
-.socials-row .social-pill:nth-child(1) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.25s both; }
-.socials-row .social-pill:nth-child(2) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.31s both; }
-.socials-row .social-pill:nth-child(3) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.37s both; }
-.socials-row .social-pill:nth-child(4) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.43s both; }
-.socials-row .social-pill:nth-child(5) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.49s both; }
-.socials-row .social-pill:nth-child(6) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.55s both; }
-
-/* Card reveal — JS adds .card-revealed after IntersectionObserver */
-.net-card {
-    will-change: transform, opacity;
-}
-.net-card.card-revealed {
-    animation: revealUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* Improved hover — more spring, more depth */
-.net-card:hover {
-    filter: brightness(1.12);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 55px rgba(0,0,0,0.55);
-}
-.net-card:active { transform: scale(0.96); }
-
-/* Followers count — fade-in when ready */
-.followers-count {
-    display: inline-block;
-    transition: opacity 0.3s ease;
+/* ========================
+   SMALL MOBILE ≤ 360px
+   ======================== */
+@media (max-width: 360px) {
+    :root { --px: 16px; }
+    .social-pill svg { width: 22px; height: 22px; }
+    .profile-name { font-size: 22px; }
+    .net-card--half { min-height: 138px; }
 }
 
 /* ========================
-   DESKTOP DASHBOARD ≥ 900px
+   TABLET ≥ 600px
+   ======================== */
+@media (min-width: 600px) {
+    :root {
+        --max-w: 540px;
+        --px: 28px;
+        --gap: 12px;
+    }
+
+    .hero { height: 55svh; max-height: 500px; }
+
+    .net-card--full  { min-height: 92px; }
+    .net-card--half  { min-height: 168px; }
+}
+
+/* ========================
+   DESKTOP ≥ 900px
+   single column, wider & more air
    ======================== */
 @media (min-width: 900px) {
-
-    /* Remove mobile sticky header — sidebar is always visible */
-    .sticky-header { display: none !important; }
-
-    body {
-        align-items: flex-start;
-        min-height: 100svh;
+    :root {
+        --max-w: 620px;
+        --px: 36px;
+        --gap: 14px;
+        --radius: 24px;
     }
 
-    .page-wrapper {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        max-width: 1400px;
-        width: 100%;
-        min-height: 100svh;
-        margin: 0 auto;
-    }
+    .hero { height: 52svh; max-height: 520px; }
 
-    /* ── LEFT SIDEBAR ── */
-    .hero {
-        position: sticky;
-        top: 0;
-        height: 100svh;
-        max-height: 100svh;
-        min-height: unset;
-        overflow: hidden;
-        background: #080808;
-        border-right: 1px solid rgba(255,255,255,0.07);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 48px 28px;
-    }
+    .net-card--full  { min-height: 96px; }
+    .net-card--half  { min-height: 176px; }
 
-    /* Circular profile photo */
-    .hero__photo {
-        position: relative;
-        inset: auto;
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        border: 2.5px solid rgba(255,255,255,0.15);
-        box-shadow: 0 0 0 8px rgba(255,255,255,0.04), 0 28px 70px rgba(0,0,0,0.6);
-        flex-shrink: 0;
-        animation: circleFloat 5s ease-in-out infinite alternate;
-    }
+    /* Larger icons on desktop */
+    .net-card--half .net-card__icon svg { width: 36px; height: 36px; }
+    .net-card--full .net-card__icon svg { width: 32px; height: 32px; }
 
-    .hero__gradient { display: none; }
-
-    .hero__content {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        padding: 22px 0 0;
-        text-align: center;
-        width: 100%;
-        animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-    }
-
-    .profile-name {
-        font-size: clamp(15px, 1.6vw, 19px);
-        text-shadow: none;
-    }
-
-    .profile-handle { font-size: 12px; margin-top: 3px; }
-
-    .profile-role {
-        font-size: 11px;
-        margin-top: 5px;
-        color: rgba(255,255,255,0.35);
-    }
-
-    /* Show sidebar extras */
-    .hero__meta {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 14px;
-        margin-top: 28px;
-        width: 100%;
-    }
-
-    .hero__meta-pills {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 4px;
-    }
-
-    .hero__meta-pills .social-pill {
-        padding: 5px;
-        animation: none;
-        opacity: 1;
-    }
-    .hero__meta-pills .social-pill svg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .hero__meta-followers {
-        font-size: 12px;
-        font-weight: 400;
-        color: rgba(255,255,255,0.45);
-        margin: 0;
-    }
-
-    .hero__meta-count {
-        font-weight: 700;
-        color: rgba(255,255,255,0.85);
-    }
-
-    /* Hide duplicate pills/followers from right panel */
-    .content > .socials-row,
-    .content > .followers-static {
-        display: none;
-    }
-
-    /* ── RIGHT PANEL ── */
-    .content {
-        padding-top: 52px;
-        padding-bottom: 80px;
-        align-items: stretch;
-    }
-
-    .net-grid {
-        max-width: none;
-        padding: 0 40px;
-        gap: 12px;
-    }
-
-    /* Bigger cards on desktop */
-    .net-card--full { min-height: 90px; }
-    .net-card--half { min-height: 160px; }
-
-    /* Subtle ambient glow on branded cards when hovered */
-    .net-card--instagram:hover  { box-shadow: 0 20px 60px rgba(225,48,108,0.35); }
-    .net-card--facebook:hover   { box-shadow: 0 20px 60px rgba(24,119,242,0.35); }
-    .net-card--youtube:hover    { box-shadow: 0 20px 60px rgba(255,0,0,0.35); }
-    .net-card--discord:hover    { box-shadow: 0 20px 60px rgba(88,101,242,0.35); }
-    .net-card--tiktok:hover     { box-shadow: 0 20px 60px rgba(37,244,238,0.2); }
+    /* Bolder name on desktop half cards */
+    .net-card--half .net-card__name { font-size: 18px; }
 }
