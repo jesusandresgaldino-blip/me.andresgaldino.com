@@ -231,6 +231,7 @@ body {
     border: none;
     padding: 5px;
     border-radius: 10px;
+    -webkit-tap-highlight-color: transparent;
     transition:
         transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
         background 0.18s ease;
@@ -238,12 +239,7 @@ body {
 
 .social-pill svg { width: 26px; height: 26px; flex-shrink: 0; }
 
-.social-pill:hover {
-    transform: translateY(-4px) scale(1.14);
-    background: rgba(255,255,255,0.06);
-}
-
-.social-pill:active { transform: scale(0.88); }
+.social-pill:active { transform: scale(0.84); transition-duration: 0.08s; }
 
 /* Staggered pop on load */
 .socials-row .social-pill:nth-child(1) { animation: pillPop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.20s both; }
@@ -303,6 +299,7 @@ body {
     background: linear-gradient(145deg, rgba(255,255,255,0.075) 0%, rgba(255,255,255,0.025) 100%);
     border: 1px solid rgba(255,255,255,0.09);
     box-shadow: 0 2px 20px rgba(0,0,0,0.45);
+    -webkit-tap-highlight-color: transparent;
     transition:
         transform 0.30s cubic-bezier(0.34, 1.56, 0.64, 1),
         box-shadow 0.25s ease,
@@ -310,14 +307,7 @@ body {
         background 0.20s ease;
 }
 
-.net-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: linear-gradient(145deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 100%);
-    border-color: rgba(255,255,255,0.16);
-    box-shadow: 0 22px 55px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.12);
-}
-
-.net-card:active { transform: scale(0.96); transition-duration: 0.1s; }
+.net-card:active { transform: scale(0.96); transition-duration: 0.09s; }
 
 /* ── Full-width card ── */
 .net-card--full {
@@ -386,11 +376,6 @@ body {
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.net-card:hover .net-card__arrow {
-    transform: translate(2px, -2px);
-    color: rgba(255,255,255,0.80);
-}
-
 /* ========================
    INSTAGRAM TOGGLE CARD
    ======================== */
@@ -400,20 +385,14 @@ body {
     padding: 0;
     overflow: hidden;
     cursor: pointer;
-    /* IG gradient as glass tint, not solid */
     background: linear-gradient(135deg,
         rgba(64,93,230,0.60) 0%,
         rgba(131,58,180,0.65) 25%,
         rgba(225,48,108,0.70) 55%,
         rgba(253,29,29,0.65) 78%,
         rgba(252,176,69,0.55) 100%);
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 4px 30px rgba(225,48,108,0.20);
-}
-
-.net-card--instagram:hover {
-    box-shadow: 0 22px 60px rgba(225,48,108,0.38), inset 0 1px 0 rgba(255,255,255,0.20);
-    border-color: rgba(255,255,255,0.22);
 }
 
 .ig-toggle__header-row {
@@ -464,8 +443,6 @@ body {
     transition: transform 0.45s ease;
 }
 
-.ig-card__post:hover img { transform: scale(1.08); }
-
 .ig-card__post::after {
     content: '';
     position: absolute;
@@ -474,13 +451,11 @@ body {
     transition: background 0.25s ease;
 }
 
-.ig-card__post:hover::after { background: rgba(0,0,0,0.15); }
-
 /* ========================
    BRAND CARDS — glass tints
    ======================== */
 
-/* TikTok — dark with neon tint */
+/* TikTok */
 .net-card--tiktok {
     background: linear-gradient(145deg, rgba(254,44,85,0.15) 0%, rgba(37,244,238,0.08) 100%);
     border-color: rgba(254,44,85,0.18);
@@ -494,49 +469,44 @@ body {
         radial-gradient(circle at 15% 80%, rgba(37,244,238,0.12) 0%, transparent 50%);
     pointer-events: none;
 }
-.net-card--tiktok:hover { box-shadow: 0 22px 55px rgba(254,44,85,0.25), 0 22px 55px rgba(37,244,238,0.12), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-/* Facebook — blue tint */
+/* Facebook */
 .net-card--facebook {
     background: linear-gradient(145deg, rgba(24,119,242,0.35) 0%, rgba(24,119,242,0.12) 100%);
     border-color: rgba(24,119,242,0.28);
 }
-.net-card--facebook:hover { box-shadow: 0 22px 55px rgba(24,119,242,0.35), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-/* YouTube — red tint */
+/* YouTube */
 .net-card--youtube {
     background: linear-gradient(145deg, rgba(255,0,0,0.28) 0%, rgba(255,0,0,0.08) 100%);
     border-color: rgba(255,0,0,0.22);
 }
-.net-card--youtube:hover { box-shadow: 0 22px 55px rgba(255,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-/* Discord — purple tint */
+/* Discord */
 .net-card--discord {
     background: linear-gradient(145deg, rgba(88,101,242,0.38) 0%, rgba(88,101,242,0.12) 100%);
     border-color: rgba(88,101,242,0.30);
 }
-.net-card--discord:hover { box-shadow: 0 22px 55px rgba(88,101,242,0.38), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-/* Threads — near-black glass */
+/* Threads */
 .net-card--threads {
     background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
     border-color: rgba(255,255,255,0.10);
 }
 
-/* X — dark glass, lighter border */
+/* X */
 .net-card--x {
     background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
     border-color: rgba(255,255,255,0.12);
 }
 
-/* LinkedIn — blue tint */
+/* LinkedIn */
 .net-card--linkedin {
     background: linear-gradient(145deg, rgba(10,102,194,0.38) 0%, rgba(10,102,194,0.12) 100%);
     border-color: rgba(10,102,194,0.30);
 }
-.net-card--linkedin:hover { box-shadow: 0 22px 55px rgba(10,102,194,0.35), inset 0 1px 0 rgba(255,255,255,0.10); }
 
-/* Portfolio — frosted white glass */
+/* Portfolio */
 .net-card--portfolio {
     grid-column: span 2;
     flex-direction: row;
@@ -547,10 +517,6 @@ body {
     background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 8px 40px rgba(0,0,0,0.30);
-}
-.net-card--portfolio:hover {
-    box-shadow: 0 22px 55px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.22);
-    border-color: rgba(255,255,255,0.26);
 }
 
 .net-card__name--lg { font-size: 17px; font-weight: 800; }
@@ -567,15 +533,8 @@ body {
     min-height: 180px;
     background: #000;
     border: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 4px 32px rgba(0,0,0,0.60), inset 0 1px 0 rgba(255,255,255,0.07);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.60);
     cursor: default;
-}
-
-.net-card--reel:hover {
-    transform: none;
-    background: #000;
-    box-shadow: 0 8px 44px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.10);
-    border-color: rgba(255,255,255,0.16);
 }
 
 .net-card--reel video {
@@ -587,22 +546,16 @@ body {
     display: block;
 }
 
-.reel__top,
 .reel__bottom {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 0; right: 0; bottom: 0;
     z-index: 2;
     display: flex;
     align-items: center;
-    pointer-events: none;
-}
-
-.reel__bottom {
-    bottom: 0;
+    justify-content: flex-end;
     padding: 28px 12px 12px;
     background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
-    justify-content: flex-end;
+    pointer-events: none;
 }
 
 .reel__mute-btn {
@@ -611,8 +564,6 @@ body {
     height: 36px;
     border-radius: 50%;
     background: rgba(0,0,0,0.52);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.20);
     display: flex;
     align-items: center;
@@ -624,13 +575,7 @@ body {
     transition: background 0.20s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1), border-color 0.20s ease;
 }
 
-.reel__mute-btn:hover {
-    background: rgba(255,255,255,0.18);
-    border-color: rgba(255,255,255,0.32);
-    transform: scale(1.12);
-}
-
-.reel__mute-btn:active { transform: scale(0.88); }
+.reel__mute-btn:active { transform: scale(0.86); transition-duration: 0.08s; }
 
 .reel__mute-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
 
@@ -650,6 +595,87 @@ body {
 @keyframes revealUp {
     from { opacity: 0; transform: translateY(30px) scale(0.96); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ========================
+   HOVER — mouse/trackpad only
+   ======================== */
+@media (hover: hover) {
+    .net-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: linear-gradient(145deg, rgba(255,255,255,0.11) 0%, rgba(255,255,255,0.05) 100%);
+        border-color: rgba(255,255,255,0.16);
+        box-shadow: 0 22px 55px rgba(0,0,0,0.55);
+    }
+
+    .net-card:hover .net-card__arrow {
+        transform: translate(2px, -2px);
+        color: rgba(255,255,255,0.80);
+    }
+
+    .social-pill:hover {
+        transform: translateY(-4px) scale(1.14);
+        background: rgba(255,255,255,0.06);
+    }
+
+    .net-card--instagram:hover {
+        box-shadow: 0 22px 60px rgba(225,48,108,0.38);
+        border-color: rgba(255,255,255,0.14);
+    }
+
+    .net-card--tiktok:hover {
+        box-shadow: 0 22px 55px rgba(254,44,85,0.25), 0 22px 55px rgba(37,244,238,0.12);
+    }
+
+    .net-card--facebook:hover { box-shadow: 0 22px 55px rgba(24,119,242,0.35); }
+    .net-card--youtube:hover  { box-shadow: 0 22px 55px rgba(255,0,0,0.30); }
+    .net-card--discord:hover  { box-shadow: 0 22px 55px rgba(88,101,242,0.38); }
+    .net-card--linkedin:hover { box-shadow: 0 22px 55px rgba(10,102,194,0.35); }
+
+    .net-card--portfolio:hover {
+        box-shadow: 0 22px 55px rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.26);
+    }
+
+    .net-card--reel:hover {
+        transform: none;
+        box-shadow: 0 8px 44px rgba(0,0,0,0.65);
+        border-color: rgba(255,255,255,0.16);
+    }
+
+    .reel__mute-btn:hover {
+        background: rgba(255,255,255,0.18);
+        border-color: rgba(255,255,255,0.32);
+        transform: scale(1.12);
+    }
+
+    .ig-card__post:hover img { transform: scale(1.08); }
+    .ig-card__post:hover::after { background: rgba(0,0,0,0.15); }
+}
+
+/* ========================
+   TOUCH — feedback sin hover
+   ======================== */
+@media (hover: none) {
+    .net-card:active {
+        transform: scale(0.95);
+        filter: brightness(0.88);
+        transition-duration: 0.08s;
+    }
+
+    .net-card--reel:active { transform: none; filter: none; }
+
+    .social-pill:active {
+        transform: scale(0.80);
+        transition-duration: 0.08s;
+    }
+
+    .reel__mute-btn:active {
+        background: rgba(255,255,255,0.22);
+        transform: scale(0.86);
+    }
+
+    .ig-card__post:active::after { background: rgba(0,0,0,0.18); }
 }
 
 /* ========================
@@ -680,7 +706,6 @@ body {
 
 /* ========================
    DESKTOP ≥ 900px
-   single column, wider & more air
    ======================== */
 @media (min-width: 900px) {
     :root {
@@ -695,10 +720,8 @@ body {
     .net-card--full  { min-height: 96px; }
     .net-card--half  { min-height: 176px; }
 
-    /* Larger icons on desktop */
     .net-card--half .net-card__icon svg { width: 36px; height: 36px; }
     .net-card--full .net-card__icon svg { width: 32px; height: 32px; }
 
-    /* Bolder name on desktop half cards */
     .net-card--half .net-card__name { font-size: 18px; }
 }
