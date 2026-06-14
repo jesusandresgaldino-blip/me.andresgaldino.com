@@ -127,9 +127,9 @@ body {
 }
 
 .verified-badge svg {
-    width: 30px;
-    height: 30px;
-    filter: drop-shadow(0 2px 8px rgba(29,155,240,0.6));
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 2px 6px rgba(56,151,240,0.5));
 }
 
 .profile-handle {
