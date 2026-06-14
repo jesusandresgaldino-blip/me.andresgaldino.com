@@ -9,7 +9,7 @@
 
 :root {
     --max-w: 480px;
-    --px: 16px;        /* horizontal padding */
+    --px: 20px;        /* horizontal padding */
     --gap: 12px;       /* card gap */
     --black: #000;
     --dark: #0d0d0d;
@@ -128,7 +128,6 @@ body {
 .verified-badge svg {
     width: 22px;
     height: 22px;
-    filter: drop-shadow(0 2px 6px rgba(56,151,240,0.5));
 }
 
 .profile-handle {
@@ -164,7 +163,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-bottom: 20px;
     padding: 0 var(--px);
