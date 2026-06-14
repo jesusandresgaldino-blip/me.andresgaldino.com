@@ -667,6 +667,10 @@ body {
     background: #5865F2;
 }
 
+.net-card--linkedin {
+    background: #0A66C2;
+}
+
 .net-card--threads {
     background: #111;
     border: 1px solid rgba(255,255,255,0.09);
