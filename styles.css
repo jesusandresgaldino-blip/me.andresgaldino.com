@@ -191,8 +191,8 @@ body {
 .social-pill__bg { display: none; }
 
 .social-pill svg {
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
     flex-shrink: 0;
     opacity: 1;
     filter: none;
