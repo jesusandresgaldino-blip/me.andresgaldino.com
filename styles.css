@@ -716,3 +716,220 @@ body {
     .link-card__platform-badge svg { width: 13px; height: 13px; }
     .link-card__title { font-size: 12px; }
 }
+
+/* ========================
+   PROFILE ROLE TAG
+   ======================== */
+.profile-role {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+/* Desktop sidebar extra — hidden on mobile */
+.hero__meta { display: none; }
+
+/* ========================
+   ANIMATIONS — SMART
+   ======================== */
+@keyframes revealUp {
+    from { opacity: 0; transform: translateY(28px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pillPop {
+    0%   { opacity: 0; transform: scale(0.4) rotate(-8deg); }
+    65%  { transform: scale(1.18) rotate(3deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes circleFloat {
+    0%   { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Staggered pill bounce-in on load */
+.socials-row .social-pill:nth-child(1) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.25s both; }
+.socials-row .social-pill:nth-child(2) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.31s both; }
+.socials-row .social-pill:nth-child(3) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.37s both; }
+.socials-row .social-pill:nth-child(4) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.43s both; }
+.socials-row .social-pill:nth-child(5) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.49s both; }
+.socials-row .social-pill:nth-child(6) { animation: pillPop 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.55s both; }
+
+/* Card reveal — JS adds .card-revealed after IntersectionObserver */
+.net-card {
+    will-change: transform, opacity;
+}
+.net-card.card-revealed {
+    animation: revealUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Improved hover — more spring, more depth */
+.net-card:hover {
+    filter: brightness(1.12);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.55);
+}
+.net-card:active { transform: scale(0.96); }
+
+/* Followers count — fade-in when ready */
+.followers-count {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+/* ========================
+   DESKTOP DASHBOARD ≥ 900px
+   ======================== */
+@media (min-width: 900px) {
+
+    /* Remove mobile sticky header — sidebar is always visible */
+    .sticky-header { display: none !important; }
+
+    body {
+        align-items: flex-start;
+        min-height: 100svh;
+    }
+
+    .page-wrapper {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        max-width: 1400px;
+        width: 100%;
+        min-height: 100svh;
+        margin: 0 auto;
+    }
+
+    /* ── LEFT SIDEBAR ── */
+    .hero {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        max-height: 100svh;
+        min-height: unset;
+        overflow: hidden;
+        background: #080808;
+        border-right: 1px solid rgba(255,255,255,0.07);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 28px;
+    }
+
+    /* Circular profile photo */
+    .hero__photo {
+        position: relative;
+        inset: auto;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 2.5px solid rgba(255,255,255,0.15);
+        box-shadow: 0 0 0 8px rgba(255,255,255,0.04), 0 28px 70px rgba(0,0,0,0.6);
+        flex-shrink: 0;
+        animation: circleFloat 5s ease-in-out infinite alternate;
+    }
+
+    .hero__gradient { display: none; }
+
+    .hero__content {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        padding: 22px 0 0;
+        text-align: center;
+        width: 100%;
+        animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .profile-name {
+        font-size: clamp(15px, 1.6vw, 19px);
+        text-shadow: none;
+    }
+
+    .profile-handle { font-size: 12px; margin-top: 3px; }
+
+    .profile-role {
+        font-size: 11px;
+        margin-top: 5px;
+        color: rgba(255,255,255,0.35);
+    }
+
+    /* Show sidebar extras */
+    .hero__meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        margin-top: 28px;
+        width: 100%;
+    }
+
+    .hero__meta-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .hero__meta-pills .social-pill {
+        padding: 5px;
+        animation: none;
+        opacity: 1;
+    }
+    .hero__meta-pills .social-pill svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .hero__meta-followers {
+        font-size: 12px;
+        font-weight: 400;
+        color: rgba(255,255,255,0.45);
+        margin: 0;
+    }
+
+    .hero__meta-count {
+        font-weight: 700;
+        color: rgba(255,255,255,0.85);
+    }
+
+    /* Hide duplicate pills/followers from right panel */
+    .content > .socials-row,
+    .content > .followers-static {
+        display: none;
+    }
+
+    /* ── RIGHT PANEL ── */
+    .content {
+        padding-top: 52px;
+        padding-bottom: 80px;
+        align-items: stretch;
+    }
+
+    .net-grid {
+        max-width: none;
+        padding: 0 40px;
+        gap: 12px;
+    }
+
+    /* Bigger cards on desktop */
+    .net-card--full { min-height: 90px; }
+    .net-card--half { min-height: 160px; }
+
+    /* Subtle ambient glow on branded cards when hovered */
+    .net-card--instagram:hover  { box-shadow: 0 20px 60px rgba(225,48,108,0.35); }
+    .net-card--facebook:hover   { box-shadow: 0 20px 60px rgba(24,119,242,0.35); }
+    .net-card--youtube:hover    { box-shadow: 0 20px 60px rgba(255,0,0,0.35); }
+    .net-card--discord:hover    { box-shadow: 0 20px 60px rgba(88,101,242,0.35); }
+    .net-card--tiktok:hover     { box-shadow: 0 20px 60px rgba(37,244,238,0.2); }
+}
