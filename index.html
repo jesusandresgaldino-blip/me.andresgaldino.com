@@ -198,6 +198,30 @@
                     <span class="net-card__name">X</span>
                 </a>
 
+                <!-- Portfolio Reel — video -->
+                <div class="net-card net-card--reel" id="reel-card">
+                    <video
+                        id="reel-video"
+                        src="assets/portafolio.mp4"
+                        muted
+                        playsinline
+                        loop
+                        preload="auto"
+                    ></video>
+                    <div class="reel__top">
+                        <span class="reel__badge">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            Portafolio
+                        </span>
+                    </div>
+                    <div class="reel__bottom">
+                        <button class="reel__mute-btn" id="reel-mute-btn" aria-label="Activar sonido">
+                            <svg class="reel__icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                            <svg class="reel__icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Portfolio — full width, tall -->
                 <a href="https://andresgaldino.com" class="net-card net-card--portfolio">
                     <div class="net-card__icon">
@@ -251,6 +275,31 @@
             card.style.opacity = '0';
             revealObserver.observe(card);
         });
+
+        // ── Portfolio reel: play on first interaction, mute toggle ──
+        const reelVideo = document.getElementById('reel-video');
+        const reelMuteBtn = document.getElementById('reel-mute-btn');
+        let reelStarted = false;
+
+        function startReel() {
+            if (reelStarted || !reelVideo) return;
+            reelStarted = true;
+            reelVideo.play().catch(() => {});
+            document.removeEventListener('touchstart', startReel);
+            document.removeEventListener('click', startReel);
+        }
+
+        document.addEventListener('touchstart', startReel, { passive: true });
+        document.addEventListener('click', startReel);
+
+        if (reelMuteBtn && reelVideo) {
+            reelMuteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                reelVideo.muted = !reelVideo.muted;
+                reelMuteBtn.classList.toggle('reel-unmuted', !reelVideo.muted);
+                reelMuteBtn.setAttribute('aria-label', reelVideo.muted ? 'Activar sonido' : 'Silenciar');
+            });
+        }
 
         // ── Followers count-up ──
         function countUp(el, target, suffix, duration) {
