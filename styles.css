@@ -470,30 +470,37 @@ body {
 }
 
 /* ========================
-   INSTAGRAM PHOTO GRID
+   INSTAGRAM FEED CARD
    ======================== */
-.ig-section {
-    width: 100%;
-    padding-top: 32px;
+.net-card--ig-feed {
+    grid-column: span 2;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    background: #0d0d0d;
+    border: 1px solid rgba(255,255,255,0.09);
+    cursor: default;
 }
 
-.ig-section__header {
+.ig-card__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 var(--px) 12px;
+    padding: 14px 16px;
+    position: relative;
+    z-index: 1;
 }
 
-.ig-section__brand {
+.ig-card__brand {
     display: flex;
     align-items: center;
     gap: 9px;
 }
 
-.ig-section__icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
+.ig-card__icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
     background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
     display: flex;
     align-items: center;
@@ -501,45 +508,48 @@ body {
     flex-shrink: 0;
 }
 
-.ig-section__icon svg {
+.ig-card__icon svg {
     width: 18px;
     height: 18px;
 }
 
-.ig-section__handle {
+.ig-card__handle {
     font-size: 14px;
     font-weight: 600;
     color: #fff;
 }
 
-.ig-section__follow {
-    font-size: 13px;
+.ig-card__follow {
+    font-size: 12px;
     font-weight: 600;
     color: #fff;
     background: rgba(255,255,255,0.10);
     border: 1px solid rgba(255,255,255,0.16);
     border-radius: 8px;
-    padding: 6px 18px;
+    padding: 5px 16px;
     text-decoration: none;
     transition: background 0.15s ease;
+    flex-shrink: 0;
 }
 
-.ig-section__follow:hover { background: rgba(255,255,255,0.18); }
+.ig-card__follow:hover { background: rgba(255,255,255,0.18); }
 
-.ig-grid {
+.ig-card__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2px;
+    position: relative;
+    z-index: 1;
 }
 
-.ig-post {
+.ig-card__post {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     display: block;
     position: relative;
 }
 
-.ig-post img {
+.ig-card__post img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -548,9 +558,9 @@ body {
     transition: transform 0.4s ease;
 }
 
-.ig-post:hover img { transform: scale(1.06); }
+.ig-card__post:hover img { transform: scale(1.06); }
 
-.ig-post::after {
+.ig-card__post::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -558,23 +568,7 @@ body {
     transition: background 0.25s ease;
 }
 
-.ig-post:hover::after { background: rgba(0,0,0,0.18); }
-
-.ig-section__more {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 14px var(--px);
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.15s ease;
-}
-
-.ig-section__more svg { width: 14px; height: 14px; }
-.ig-section__more:hover { color: rgba(255,255,255,0.85); }
+.ig-card__post:hover::after { background: rgba(0,0,0,0.18); }
 
 /* ========================
    NETWORK CARDS GRID
