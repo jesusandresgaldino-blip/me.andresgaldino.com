@@ -477,8 +477,8 @@ body {
     flex-direction: column;
     padding: 0;
     overflow: hidden;
-    background: #0d0d0d;
-    border: 1px solid rgba(255,255,255,0.09);
+    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
+    border: none;
     cursor: default;
 }
 
@@ -501,7 +501,7 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 9px;
-    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
+    background: rgba(0,0,0,0.22);
     display: flex;
     align-items: center;
     justify-content: center;
