@@ -470,74 +470,53 @@ body {
 }
 
 /* ========================
-   INSTAGRAM FEED CARD
+   INSTAGRAM TOGGLE CARD
    ======================== */
-.net-card--ig-feed {
+.net-card--instagram {
     grid-column: span 2;
+    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
     flex-direction: column;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #405de6 0%, #833ab4 28%, #e1306c 58%, #fd1d1d 78%, #fcb045 100%);
-    border: none;
-    cursor: default;
+    cursor: pointer;
 }
 
-.ig-card__header {
+.ig-toggle__header-row {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
-    position: relative;
-    z-index: 1;
+    padding: 20px 22px;
+    gap: 16px;
+    min-height: 82px;
+    width: 100%;
 }
 
-.ig-card__brand {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-.ig-card__icon {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.ig-toggle__chevron {
+    width: 20px;
+    height: 20px;
+    color: rgba(255,255,255,0.75);
     flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ig-card__icon svg {
-    width: 18px;
-    height: 18px;
+.net-card--instagram.ig-open .ig-toggle__chevron {
+    transform: rotate(180deg);
 }
 
-.ig-card__handle {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
+.ig-toggle__photos {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ig-card__follow {
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 8px;
-    padding: 5px 16px;
-    text-decoration: none;
-    transition: background 0.15s ease;
-    flex-shrink: 0;
+.net-card--instagram.ig-open .ig-toggle__photos {
+    max-height: 600px;
 }
-
-.ig-card__follow:hover { background: rgba(255,255,255,0.18); }
 
 .ig-card__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    position: relative;
-    z-index: 1;
 }
 
 .ig-card__post {
