@@ -605,38 +605,12 @@ body {
     pointer-events: none;
 }
 
-.reel__top {
-    top: 0;
-    padding: 12px 14px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.48) 0%, transparent 100%);
-    justify-content: flex-start;
-}
-
 .reel__bottom {
     bottom: 0;
     padding: 28px 12px 12px;
     background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
     justify-content: flex-end;
 }
-
-.reel__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 10px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.80);
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 20px;
-    padding: 5px 11px 5px 9px;
-}
-
-.reel__badge svg { width: 11px; height: 11px; flex-shrink: 0; }
 
 .reel__mute-btn {
     pointer-events: auto;
